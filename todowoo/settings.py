@@ -83,10 +83,10 @@ WSGI_APPLICATION = 'todowoo.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': env('NAME_DB'),
-        'USER':env('USER_DB'),
-        'PASSWORD': env('PASSWORD_DB'),
-        'HOST': env('HOST_DB'),
+        'NAME': env('NAME_DB', default='todowoo'),
+        'USER':env('USER_DB', default='postgres'),
+        'PASSWORD': env('PASSWORD_DB', default='coderslab'),
+        'HOST': env('HOST_DB', default='localhost'),
         'PORT':'',
     }
 }
