@@ -47,7 +47,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
+    #'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -82,13 +82,14 @@ WSGI_APPLICATION = 'todowoo.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': env('NAME_DB', default='todowoo'),
-        'USER':env('USER_DB', default='postgres'),
-        'PASSWORD': env('PASSWORD_DB', default='coderslab'),
-        'HOST': env('HOST_DB', default='localhost'),
-        'PORT':'',
+        'ENGINE': env.str('DB_ENGINE', default='django.db.backends.sqlite3'),
+        'NAME': env.str('NAME_DB', default=os.path.join(BASE_DIR, 'db.sqlite3')),
+        'USER':env.str('USER_DB', default=''),
+        'PASSWORD': env.str('PASSWORD_DB', default=''),
+        'HOST': env.str('HOST_DB', default='localhost'),
+        'PORT':'5432',
     }
+
 }
 
 
@@ -130,7 +131,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 LOGIN_URL = '/login'
 
